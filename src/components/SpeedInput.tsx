@@ -7,32 +7,42 @@ interface SpeedInputProps {
 }
 
 export const SpeedInput: React.FC<SpeedInputProps> = ({ speed, setSpeed }) => {
-    const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-        const val = parseInt(e.target.value, 10);
-        if (!isNaN(val)) {
-            // Clamp value between 1 and 400
-            if (val >= 1 && val <= 400) {
-                setSpeed(val);
-            } else if (val > 400) {
-                setSpeed(400);
-            } else if (val < 1) {
-                setSpeed(1);
-            }
-        } else if (e.target.value === '') {
-            // Allow empty string for typing, but maybe handle blur to reset or keep internal state
-            // For now, strict number input
+    const [inputValue, setInputValue] = React.useState(speed.toString());
+
+    React.useEffect(() => {
+        // Only update local input if the parsed value differs from the prop
+        // This preserves user input like "05" while keeping sync
+        const parsed = parseInt(inputValue, 10);
+        if (isNaN(parsed) || parsed !== speed) {
+            setInputValue(speed.toString());
         }
+    }, [speed]);
+
+    const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+        const valStr = e.target.value;
+        setInputValue(valStr);
+
+        if (valStr === '') return;
+
+        const val = parseInt(valStr, 10);
+        if (!isNaN(val) && val > 0) {
+            setSpeed(val);
+        }
+    };
+
+    const handleBlur = () => {
+        // Reset to current valid speed on blur if input is invalid/empty
+        setInputValue(speed.toString());
     };
 
     return (
         <div className={styles.container}>
             <input
                 type="number"
-                value={speed}
+                value={inputValue}
                 onChange={handleChange}
+                onBlur={handleBlur}
                 className={styles.input}
-                min={1}
-                max={400}
             />
             <span className={styles.unit}>文字/分</span>
         </div>
