@@ -1,0 +1,71 @@
+.container {
+    position: absolute;
+    left: 0;
+    width: 20px;
+    /* Fixed width for the bar */
+    background-color: var(--track-color);
+    /* Light track background */
+    z-index: 10;
+    box-sizing: border-box;
+}
+
+.settingMode {
+    border: 2px solid red;
+    z-index: 100;
+    /* Bring to front in setting mode */
+}
+
+.bar {
+    width: 100%;
+    background-color: var(--primary-color);
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+.dragHandle {
+    position: absolute;
+    left: -10px;
+    /* Extend hit area */
+    right: -10px;
+    height: 30px;
+    cursor: ns-resize;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 101;
+}
+
+.topHandle {
+    top: -15px;
+    /* Center on top edge */
+}
+
+.bottomHandle {
+    bottom: -15px;
+    /* Center on bottom edge */
+}
+
+.handleLabel {
+    background-color: red;
+    color: white;
+    font-size: 0.7rem;
+    padding: 2px 4px;
+    border-radius: 4px;
+    pointer-events: none;
+    /* Let clicks pass through to handle */
+    white-space: nowrap;
+}
+
+/* Visual line for handles */
+.dragHandle::before {
+    content: '';
+    position: absolute;
+    left: 10px;
+    right: 10px;
+    height: 2px;
+    background-color: red;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: -1;
+}

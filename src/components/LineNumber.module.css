@@ -1,0 +1,25 @@
+.container {
+    position: absolute;
+    left: 0;
+    width: 40px;
+    /* Wider than bar to fit text */
+    height: 25px;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    padding-left: 2px;
+    font-size: 0.9rem;
+    color: var(--text-color);
+    z-index: 5;
+    font-weight: bold;
+}
+
+.label {
+    font-size: 0.7rem;
+    margin-right: 2px;
+    opacity: 0.7;
+}
+
+.value {
+    font-size: 1rem;
+}

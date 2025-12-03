@@ -1,0 +1,36 @@
+:root {
+  --bg-color: #ffffff;
+  --text-color: #000000;
+  --primary-color: #ffd700;
+  /* Yellow for the bar */
+  --bar-color: rgba(255, 215, 0, 0.8);
+  --track-color: rgba(0, 0, 0, 0.1);
+  --overlay-color: rgba(0, 0, 0, 0.5);
+}
+
+[data-theme='dark'] {
+  --bg-color: #1a1a1a;
+  --text-color: #ffffff;
+  --bar-color: rgba(255, 215, 0, 0.6);
+  --track-color: rgba(255, 255, 255, 0.1);
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: 'Inter', sans-serif;
+  background-color: var(--bg-color);
+  color: var(--text-color);
+  overflow: hidden;
+  /* Prevent scrolling for the fixed app layout */
+  transition: background-color 0.3s, color 0.3s;
+}
+
+input,
+button {
+  font-family: inherit;
+}

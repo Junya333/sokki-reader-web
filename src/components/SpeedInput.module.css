@@ -1,0 +1,25 @@
+.container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 8px;
+    background-color: var(--bg-color);
+    z-index: 20;
+}
+
+.input {
+    width: 60px;
+    text-align: center;
+    font-size: 1rem;
+    padding: 4px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    margin-right: 4px;
+    background-color: var(--bg-color);
+    color: var(--text-color);
+}
+
+.unit {
+    font-size: 0.8rem;
+    color: var(--text-color);
+}
