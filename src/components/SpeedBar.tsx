@@ -9,7 +9,7 @@ interface SpeedBarProps {
 }
 
 export const SpeedBar: React.FC<SpeedBarProps> = ({ elapsedTime, speed, isRunning }) => {
-    const { topMargin, bottomMargin, isSettingMode, setTopMargin, setBottomMargin } = useSettingsContext();
+    const { topMargin, bottomMargin, isSettingMode, setTopMargin, setBottomMargin, speedBarPosition } = useSettingsContext();
     const containerRef = useRef<HTMLDivElement>(null);
     const [isDraggingTop, setIsDraggingTop] = useState(false);
     const [isDraggingBottom, setIsDraggingBottom] = useState(false);
@@ -73,7 +73,7 @@ export const SpeedBar: React.FC<SpeedBarProps> = ({ elapsedTime, speed, isRunnin
     return (
         <div
             ref={containerRef}
-            className={`${styles.container} ${isSettingMode ? styles.settingMode : ''}`}
+            className={`${styles.container} ${isSettingMode ? styles.settingMode : ''} ${speedBarPosition === 'right' ? styles.rightPosition : ''}`}
             style={{
                 top: `${topMargin}px`,
                 bottom: `${bottomMargin}px`

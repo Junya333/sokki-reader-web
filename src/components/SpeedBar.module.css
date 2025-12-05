@@ -9,6 +9,11 @@
     box-sizing: border-box;
 }
 
+.rightPosition {
+    left: auto;
+    right: 0;
+}
+
 .settingMode {
     border: 2px solid red;
     z-index: 100;

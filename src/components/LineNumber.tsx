@@ -8,7 +8,7 @@ interface LineNumberProps {
 }
 
 export const LineNumber: React.FC<LineNumberProps> = ({ elapsedTime, speed }) => {
-    const { topMargin } = useSettingsContext();
+    const { topMargin, speedBarPosition } = useSettingsContext();
 
     // Calculate line number
     const lineDuration = (60000 * 20) / (speed || 1);
@@ -16,7 +16,7 @@ export const LineNumber: React.FC<LineNumberProps> = ({ elapsedTime, speed }) =>
 
     return (
         <div
-            className={styles.container}
+            className={`${styles.container} ${speedBarPosition === 'right' ? styles.rightPosition : ''}`}
             style={{ top: `${topMargin - 30}px` }} // Position just above the bar
         >
             <span className={styles.label}>No.</span>

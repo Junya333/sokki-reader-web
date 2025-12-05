@@ -5,13 +5,15 @@ interface Settings {
     bottomMargin: number;
     theme: 'light' | 'dark';
     isSettingMode: boolean;
+    speedBarPosition?: 'left' | 'right';
 }
 
 const DEFAULT_SETTINGS: Settings = {
-    topMargin: 0,
-    bottomMargin: 0,
+    topMargin: 50,
+    bottomMargin: 100,
     theme: 'light',
     isSettingMode: false,
+    speedBarPosition: 'left',
 };
 
 export const useSettings = () => {
@@ -32,12 +34,22 @@ export const useSettings = () => {
     const setBottomMargin = (val: number) => setSettings(prev => ({ ...prev, bottomMargin: val }));
     const toggleTheme = () => setSettings(prev => ({ ...prev, theme: prev.theme === 'light' ? 'dark' : 'light' }));
 
+    const [speedBarPosition, setSpeedBarPosition] = useState<'left' | 'right'>(settings.speedBarPosition || 'left');
+
+    const toggleSpeedBarPosition = () => {
+        const newPos = speedBarPosition === 'left' ? 'right' : 'left';
+        setSpeedBarPosition(newPos);
+        setSettings(prev => ({ ...prev, speedBarPosition: newPos }));
+    };
+
     return {
         ...settings,
+        speedBarPosition, // Ensure this is returned
         setTopMargin,
         setBottomMargin,
         toggleTheme,
         isSettingMode,
         toggleSettingMode,
+        toggleSpeedBarPosition,
     };
 };

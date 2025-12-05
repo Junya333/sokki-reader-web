@@ -1,10 +1,10 @@
 import React from 'react';
-import { Settings, Moon, Sun, Check } from 'lucide-react';
+import { Settings, Moon, Sun, Check, ArrowLeft, ArrowRight } from 'lucide-react';
 import { useSettingsContext } from '../context/SettingsContext';
 import styles from './Header.module.css';
 
 export const Header: React.FC = () => {
-    const { isSettingMode, toggleSettingMode, theme, toggleTheme } = useSettingsContext();
+    const { isSettingMode, toggleSettingMode, theme, toggleTheme, speedBarPosition, toggleSpeedBarPosition } = useSettingsContext();
 
     return (
         <header className={styles.header}>
@@ -17,6 +17,14 @@ export const Header: React.FC = () => {
                     title={isSettingMode ? "設定終了" : "設定モード"}
                 >
                     {isSettingMode ? <Check size={20} /> : <Settings size={20} />}
+                </button>
+
+                <button
+                    className={styles.iconButton}
+                    onClick={toggleSpeedBarPosition}
+                    title="速度バー位置切り替え"
+                >
+                    {speedBarPosition === 'left' ? <ArrowRight size={20} /> : <ArrowLeft size={20} />}
                 </button>
 
                 <button
